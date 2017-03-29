@@ -11,8 +11,6 @@ class AppFour extends Component {
 
   handleSubmit = (evt) => {
     evt.preventDefault();
-
-    alert('hi')
     
     let robsCats = this.state.robsCats;
     robsCats.push(this.state.catName);
@@ -22,8 +20,14 @@ class AppFour extends Component {
       catName,
       robsCats
     });
+  }
 
-    this.state.catName = '';
+  handleInputChange = (evt) => {
+    evt.preventDefault();
+
+    this.setState({
+      catName: evt.target.value
+    })
   }
 
   render() {
@@ -39,7 +43,8 @@ class AppFour extends Component {
 
         <CatForm 
           catName={this.state.catName}
-          handleSubmit={this.handleSubmit} />
+          handleSubmit={this.handleSubmit.bind(this)} 
+          handleInputChange={this.handleInputChange.bind(this)} />
         
       </div>
     );
