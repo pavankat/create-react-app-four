@@ -40,7 +40,8 @@ export const destroySong = (id) => {
       'Content-Type': 'application/json'
     }
   }).then(res => {
-    //res not returning id so doing this :/
+    //res not returning id - api seems to be working unless res.send(id) is wrong
+      //resorting to this
     return res.url.slice(28);
   })
 }
