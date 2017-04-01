@@ -115,10 +115,7 @@ db.on("error", function(error) {
       if (error) {
         res.send(error);
       }else {
-        console.log('---this works---');
-        console.log(id)
-        console.log('---this works---');
-        res.send(id);
+        res.json(id);
       }
     });
   });
