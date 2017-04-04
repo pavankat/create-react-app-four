@@ -73,6 +73,7 @@ db.on("error", function(error) {
       if (error) {
         console.log(error);
       }else {
+        //the reason why we are sending the savedSong back is because we now have an _id to give to the client
         res.json(savedSong);
       }
     });
