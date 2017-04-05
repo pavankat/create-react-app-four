@@ -6,10 +6,13 @@ class Song extends Component {
     super(props);
 
     this.state = {
-      edit : false
+      edit : false,
+      currentSongName : props.songName,
+      currentArtistName : props.artist
     }
 
     this._handleEdit = this._handleEdit.bind(this);
+    this._handleInputChange = this._handleInputChange.bind(this);
   }
 
   _handleEdit(evt){
@@ -19,18 +22,22 @@ class Song extends Component {
 
   _handleInputChange = (evt) => {
     evt.preventDefault();
+
+    debugger;
     const name = evt.target.name;
     this.setState({
       [name]: evt.target.value
     })
+
+    debugger;
   }
 
   render() {
     let displayEditForm = null;
     if (this.state.edit) {
       displayEditForm = <SongForm 
-          songName={this.props.songName}
-          artist={this.props.artist}
+          songName={this.state.currentSongName}
+          artist={this.state.currentArtistName}
           handleSubmit={this.props.handleUpdate}
           handleInputChange={this._handleInputChange}
           edit={true}

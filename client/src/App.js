@@ -18,6 +18,7 @@ class App extends Component {
     this._handleInputChange = this._handleInputChange.bind(this);
     this._handleSubmit = this._handleSubmit.bind(this);
     this._handleRemove = this._handleRemove.bind(this);
+    this._handleUpdate = this._handleUpdate.bind(this);
   }
 
   componentDidMount() {
@@ -101,6 +102,16 @@ class App extends Component {
 
         <br /><br />
 
+        <h2>Add a Song</h2>
+        <SongForm 
+          songName={this.state.currentSongName}
+          artist={this.state.currentArtistName}
+          handleSubmit={this._handleSubmit} 
+          handleInputChange={this._handleInputChange}
+          edit={false}
+           />
+        <br /><br />
+
         {/* you need to pass songId because you don't have access to key as a prop in the Song component*/}
         <ul>
           {this.state.songs.map((song, ind) => <Song 
@@ -113,14 +124,6 @@ class App extends Component {
             handleUpdate={this._handleUpdate} />)}
         </ul>
         <br /><br />
-
-        <SongForm 
-          songName={this.state.currentSongName}
-          artist={this.state.currentArtistName}
-          handleSubmit={this._handleSubmit} 
-          handleInputChange={this._handleInputChange}
-          edit={false}
-           />
       </div>
     );
   }
