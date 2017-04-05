@@ -83,9 +83,13 @@ class App extends Component {
     let songId = evt.target.getAttribute("data-songid")
     let updatedSong = {artist: evt.target.children[0].value, songName: evt.target.children[1].value};
 
+    let songsInState = this.state.songs;
+
     updateSong(updatedSong, songId).then((song) => {
-      let songs = this.state.songs.map((sng) => {
-        (sng._id == song._id) ? sng : song 
+      //this will return a new array of : [1, 2, 99, 4, 5]
+        //[1,2,3,4,5].map((a) => (a == 3) ? 99 : a);
+      let songs = songsInState.map((sng) => {
+        return (sng._id == song._id) ? song : sng
       });
 
       this.setState({
