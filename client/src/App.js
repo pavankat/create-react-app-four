@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import SongForm from './components/SongForm';
 import Song from './components/Song';
-import {loadSongs, createSong, destroySong, updateSong} from './lib/songService';
+import {__loadSongs, __createSong, __destroySong, __updateSong} from './lib/songService';
 
 class App extends Component {
   constructor(props) {
@@ -12,7 +12,6 @@ class App extends Component {
       songs : [],
       currentArtistName : '',
       currentSongName : '',
-      editSong : false
     }
 
     this._handleInputChange = this._handleInputChange.bind(this);
@@ -22,18 +21,8 @@ class App extends Component {
   }
 
   componentDidMount() {
-    loadSongs()
+    __loadSongs()
       .then(songs => this.setState({songs}))
-  }
-
-  _handleEdit = (evt) => {
-    evt.preventDefault();
-    let songsInState = this.state.songs;
-    let songId = evt.target.getAttribute('data-songid');
-    let songName = evt.target.getAttribute('data-songname');
-    let artistName = evt.target.getAttribute('data-artistname');
-    let editSong = true;
-    this.setState({editSong});
   }
 
   _handleSubmit = (evt) => {
@@ -41,7 +30,7 @@ class App extends Component {
 
     let newSong = {songName: this.state.currentSongName, artist: this.state.currentArtistName};
 
-    createSong(newSong)
+    __createSong(newSong)
       .then((savedSong) => { //we do this because the savedSong will have an _id while newSong won't 
         let currentArtistName = '';
         let currentSongName = '';
@@ -67,7 +56,7 @@ class App extends Component {
 
     let songId = evt.target.getAttribute('data-songid');
 
-    destroySong(songId)
+    __destroySong(songId)
       .then((oldSongId) => {
         
         let songs = this.state.songs.filter((song, i) => song._id !== oldSongId)
@@ -85,7 +74,7 @@ class App extends Component {
 
     let songsInState = this.state.songs;
 
-    updateSong(updatedSong, songId).then((song) => {
+    __updateSong(updatedSong, songId).then((song) => {
       //this will return a new array of : [1, 2, 99, 4, 5]
         //[1,2,3,4,5].map((a) => (a == 3) ? 99 : a);
       let songs = songsInState.map((sng) => {
@@ -123,7 +112,6 @@ class App extends Component {
             artist={song.artist} 
             songName={song.songName} 
             handleRemove={this._handleRemove} 
-            handleEdit={this._handleEdit}
             handleUpdate={this._handleUpdate} />)}
         </ul>
         <br /><br />
