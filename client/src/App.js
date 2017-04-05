@@ -15,9 +15,9 @@ class App extends Component {
       editSong : false
     }
 
-    this.handleInputChange = this.handleInputChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleRemove = this.handleRemove.bind(this);
+    this._handleInputChange = this._handleInputChange.bind(this);
+    this._handleSubmit = this._handleSubmit.bind(this);
+    this._handleRemove = this._handleRemove.bind(this);
   }
 
   componentDidMount() {
@@ -25,7 +25,7 @@ class App extends Component {
       .then(songs => this.setState({songs}))
   }
 
-  handleEdit = (evt) => {
+  _handleEdit = (evt) => {
     evt.preventDefault();
     let songsInState = this.state.songs;
     let songId = evt.target.getAttribute('data-songid');
@@ -35,7 +35,7 @@ class App extends Component {
     this.setState({editSong});
   }
 
-  handleSubmit = (evt) => {
+  _handleSubmit = (evt) => {
     evt.preventDefault();
 
     let newSong = {songName: this.state.currentSongName, artist: this.state.currentArtistName};
@@ -53,7 +53,7 @@ class App extends Component {
       })
   }
 
-  handleInputChange = (evt) => {
+  _handleInputChange = (evt) => {
     evt.preventDefault();
     const name = evt.target.name;
     this.setState({
@@ -61,7 +61,7 @@ class App extends Component {
     })
   }
 
-  handleRemove = (evt) => {
+  _handleRemove = (evt) => {
     evt.preventDefault();
 
     let songId = evt.target.getAttribute('data-songid');
@@ -77,7 +77,7 @@ class App extends Component {
       })
   }
 
-  handleUpdate = (evt) => {
+  _handleUpdate = (evt) => {
     evt.preventDefault();
     let songId = evt.target.getAttribute("data-songid")
     alert(songId);
@@ -108,17 +108,17 @@ class App extends Component {
             songId={song._id} 
             artist={song.artist} 
             songName={song.songName} 
-            handleRemove={this.handleRemove} 
-            handleEdit={this.handleEdit}
-            handleUpdate={this.handleUpdate} />)}
+            handleRemove={this._handleRemove} 
+            handleEdit={this._handleEdit}
+            handleUpdate={this._handleUpdate} />)}
         </ul>
         <br /><br />
 
         <SongForm 
           songName={this.state.currentSongName}
           artist={this.state.currentArtistName}
-          handleSubmit={this.handleSubmit} 
-          handleInputChange={this.handleInputChange}
+          handleSubmit={this._handleSubmit} 
+          handleInputChange={this._handleInputChange}
           edit={false}
            />
       </div>
