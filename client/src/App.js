@@ -81,8 +81,7 @@ class App extends Component {
   _handleUpdate = (evt) => {
     evt.preventDefault();
     let songId = evt.target.getAttribute("data-songid")
-    alert(songId);
-    let updatedSong = {songName: evt.target.children[0].value, artist: evt.target.children[1].value};
+    let updatedSong = {artist: evt.target.children[0].value, songName: evt.target.children[1].value};
 
     updateSong(updatedSong, songId).then((song) => {
       let songs = this.state.songs.map((sng) => {

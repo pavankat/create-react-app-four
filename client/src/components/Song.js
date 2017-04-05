@@ -23,13 +23,11 @@ class Song extends Component {
   _handleInputChange = (evt) => {
     evt.preventDefault();
 
-    debugger;
     const name = evt.target.name;
     this.setState({
       [name]: evt.target.value
     })
 
-    debugger;
   }
 
   render() {
@@ -54,9 +52,9 @@ class Song extends Component {
 
         <span className='delete-item'><a href='#' data-songId={this.props.songId} onClick={this.props.handleRemove}>X</a></span>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <strong>Artist:</strong> {this.props.artist}
+        <strong>Artist:</strong> {this.props.artist} {/* better to use artist from props because state in this component doesn't reflect the artist from the database in mongo */}
         &nbsp;&nbsp;
-        <strong>Song:</strong> {this.props.songName}
+        <strong>Song:</strong> {this.props.songName} {/* better to use songName from props because state in this component doesn't reflect the songName from the database in mongo */}
         &nbsp;&nbsp;&nbsp;&nbsp;
         <span className='edit-item'><a href='#' data-songId={this.props.songId} onClick={this._handleEdit}>{this.state.edit ? "Cancel" : "Edit"}</a></span>
           
