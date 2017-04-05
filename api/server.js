@@ -43,6 +43,8 @@ db.on("error", function(error) {
 
 // songs Routes
 // ======
+  //documentation for mongojs:
+    //https://github.com/mafintosh/mongojs
 
   app.get("/songs", function(req, res) {
     // Find all songs in the songs collection
@@ -94,20 +96,35 @@ db.on("error", function(error) {
 
   //update a song
   app.put("/songs/:id", function(req, res) {
-    db.songs.update({
-      "_id": mongojs.ObjectId(req.params.id)
-    }, {
-      $set: {
-        "artist": req.body.artist,
-        "songName": req.body.songName
-      }
-    }, function(error, editedSong) {
-      if (error) {
-        res.send(error);
-      }else {
-        res.json(editedSong);
-      }
-    });
+    //if we use this then we won't get the updated document back
+    /* 
+      db.songs.update({
+        "_id": mongojs.ObjectId(req.params.id)
+      }, {
+        $set: {
+          "artist": req.body.artist,
+          "songName": req.body.songName
+        }
+      }, function(error, editedSong) {
+        if (error) {
+          res.send(error);
+        }else {
+          res.json(editedSong);
+        }
+      });
+    */
+
+    db.songs.findAndModify({
+      query: { 
+        "_id": mongojs.ObjectId(req.params.id) 
+      },
+      update: { $set: {
+        "artist": req.body.artist, "songName": req.body.songName } 
+      },
+      new: true
+      }, function (err, editedSong) {
+          res.json(editedSong);
+      });
   });
 
   app.delete("/songs/:id", function(req, res) {
