@@ -21,8 +21,8 @@ export const createSong = (song) => {
   }).then(res => res.json())
 }
 
-export const updateSong = (song) => {
-  return fetch(`${baseUrl}/${song._id}`, {
+export const updateSong = (song, _id) => {
+  return fetch(`${baseUrl}/${_id}`, {
     method: 'PUT',
     headers: {
       'Accept': 'application/json',

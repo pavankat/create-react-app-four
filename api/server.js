@@ -55,9 +55,9 @@ db.on("error", function(error) {
       // This will fire off the success function of the ajax request
       else {
         //pretend that it takes 5 seconds to get the songs back
-        setTimeout(function(){
+        //setTimeout(function(){
           res.json(songs);
-        }, 5000)
+        //}, 5000)
       }
     });
   });

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import './App.css';
-import InsertSong from './components/InsertSong';
+import SongForm from './components/SongForm';
 import Song from './components/Song';
-import {loadSongs, createSong, destroySong} from './lib/songService';
+import {loadSongs, createSong, destroySong, updateSong} from './lib/songService';
 
 class App extends Component {
   constructor(props) {
@@ -77,48 +77,51 @@ class App extends Component {
       })
   }
 
-  render() {
-    let header = null;
-    if (this.state.editSong) {
-      header = <InsertSong 
-          songName={this.state.currentSongName}
-          artist={this.state.currentArtistName}
-          handleSubmit={this.handleSubmit} 
-          handleInputChange={this.handleInputChange}
-           />;
-    }
-    
+  handleUpdate = (evt) => {
+    evt.preventDefault();
+    let songId = evt.target.getAttribute("data-songid")
+    alert(songId);
+    let updatedSong = {songName: evt.target.children[0].value, artist: evt.target.children[1].value};
+
+    updateSong(updatedSong, songId).then((song) => {
+      let songs = this.state.songs.map((sng) => {
+        (sng._id == song._id) ? sng : song 
+      });
+
+      this.setState({
+        songs
+      })
+    });
+  }
+
+  render() {    
     return (
       <div className="App">
         <h1>The React Songs App</h1>
-
-        {header}
 
         <br /><br />
 
         {/* you need to pass songId because you don't have access to key as a prop in the Song component*/}
         <ul>
-          {this.state.songs.map((song, ind) => <Song key={song._id} songId={song._id} artist={song.artist} songName={song.songName} handleRemove={this.handleRemove} 
-            handleEdit={this.handleEdit} />)}
+          {this.state.songs.map((song, ind) => <Song 
+            key={song._id} 
+            songId={song._id} 
+            artist={song.artist} 
+            songName={song.songName} 
+            handleRemove={this.handleRemove} 
+            handleEdit={this.handleEdit}
+            handleUpdate={this.handleUpdate} />)}
         </ul>
         <br /><br />
 
-        <InsertSong 
+        <SongForm 
           songName={this.state.currentSongName}
           artist={this.state.currentArtistName}
           handleSubmit={this.handleSubmit} 
           handleInputChange={this.handleInputChange}
+          edit={false}
            />
       </div>
-
-
-
-
-
-
-
-
-
     );
   }
 }

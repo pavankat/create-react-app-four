@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-
-const InsertSong = (props) => (
-  <form onSubmit={props.handleSubmit}>
+// `data-songid="$(props.songId)"`
+//{props.songId ? 'hi' : ""}
+const SongForm = (props) => (
+  <form onSubmit={props.handleSubmit} data-songid={props.songId}>
     <input type="text" 
     name="currentArtistName"
     onChange={props.handleInputChange}
@@ -16,14 +17,17 @@ const InsertSong = (props) => (
     placeholder="insert song name" 
      />
 
-     <input type="submit" />
+    {/* inline conditional rendering: */}
+    <input type="submit" value={props.edit ? "Update" : "Save" } />
   </form>)
 
-InsertSong.propTypes = {
+//https://facebook.github.io/react/docs/typechecking-with-proptypes.html
+SongForm.propTypes = {
   handleInputChange: React.PropTypes.func.isRequired,
   handleSubmit: React.PropTypes.func.isRequired,
   artist: React.PropTypes.string.isRequired,
   songName: React.PropTypes.string.isRequired,
+  edit: React.PropTypes.bool.isRequired
 }
 
-export default InsertSong;
+export default SongForm;
