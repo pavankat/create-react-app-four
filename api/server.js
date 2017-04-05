@@ -94,9 +94,6 @@ db.on("error", function(error) {
 
   //update a song
   app.put("/songs/:id", function(req, res) {
-    console.log('-----here-----');
-    console.log(req.body);
-    console.log('-----here-----');
     db.songs.update({
       "_id": mongojs.ObjectId(req.params.id)
     }, {
