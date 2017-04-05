@@ -13,6 +13,7 @@ class Song extends Component {
   }
 
   _handleEdit(evt){
+    evt.preventDefault();
     this.setState({edit : !this.state.edit});
   }
 
