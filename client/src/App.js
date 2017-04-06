@@ -6,6 +6,8 @@ import {__loadSongs, __createSong, __destroySong, __updateSong} from './lib/song
 
 class App extends Component {
   constructor() {
+    super();
+    
     this.state = {
       songs : [],
       currentArtistName : '',
