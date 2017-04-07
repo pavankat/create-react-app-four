@@ -10,11 +10,8 @@ class App extends Component {
 
     this.state = {
       songs : [],
-      currentArtistName : '',
-      currentSongName : '',
     }
 
-    this._handleInputChange = this._handleInputChange.bind(this);
     this._handleSubmit = this._handleSubmit.bind(this);
     this._handleRemove = this._handleRemove.bind(this);
     this._handleUpdate = this._handleUpdate.bind(this);
@@ -25,30 +22,24 @@ class App extends Component {
       .then(songs => this.setState({songs}))
   }
 
+  componentDidUpdate(prevProps, prevState) {
+    //clear the song form inputs if the component updates
+    document.querySelector('#songForm').children[0].value = "";
+    document.querySelector('#songForm').children[1].value = "";
+  }
+
   _handleSubmit = (evt) => {
     evt.preventDefault();
 
-    let newSong = {songName: this.state.currentSongName, artist: this.state.currentArtistName};
+    let newSong = {artist: evt.target.children[0].value, songName: evt.target.children[1].value};
 
     __createSong(newSong)
       .then((savedSong) => { //we do this because the savedSong will have an _id while newSong won't 
-        let currentArtistName = '';
-        let currentSongName = '';
         let songs = [...this.state.songs, savedSong];
         this.setState({
-          currentArtistName,
-          currentSongName,
           songs
         });
       })
-  }
-
-  _handleInputChange = (evt) => {
-    evt.preventDefault();
-    const name = evt.target.name;
-    this.setState({
-      [name]: evt.target.value
-    })
   }
 
   _handleRemove = (evt) => {
@@ -90,16 +81,13 @@ class App extends Component {
   render() {    
     return (
       <div className="App">
-        <h1>The React Songs App</h1>
+        <h1>The React Songs App (Uncontrolled Component without refs)</h1>
 
         <br /><br />
 
         <h2>Add a Song</h2>
         <SongForm 
-          songName={this.state.currentSongName}
-          artist={this.state.currentArtistName}
           handleSubmit={this._handleSubmit} 
-          handleInputChange={this._handleInputChange}
           edit={false}
            />
         <br /><br />

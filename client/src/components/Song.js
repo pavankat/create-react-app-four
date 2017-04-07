@@ -12,24 +12,13 @@ class Song extends Component {
     }
 
     this._handleEdit = this._handleEdit.bind(this);
-    this._handleInputChange = this._handleInputChange.bind(this);
   }
 
   _handleEdit(evt){
     evt.preventDefault();
     this.setState({edit : !this.state.edit});
   }
-
-  _handleInputChange = (evt) => {
-    evt.preventDefault();
-
-    const name = evt.target.name;
-    this.setState({
-      [name]: evt.target.value
-    })
-
-  }
-
+ 
   render() {
     let displayEditForm = null;
     if (this.state.edit) {
@@ -37,7 +26,6 @@ class Song extends Component {
           songName={this.state.currentSongName}
           artist={this.state.currentArtistName}
           handleSubmit={this.props.handleUpdate}
-          handleInputChange={this._handleInputChange}
           edit={true}
           songId={this.props.songId}
           cancelForm={this._handleEdit}
