@@ -5,9 +5,9 @@ import Song from './components/Song';
 import {__loadSongs, __createSong, __destroySong, __updateSong} from './lib/songService';
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-
+  constructor() {
+    super();
+    
     this.state = {
       songs : [],
     }
