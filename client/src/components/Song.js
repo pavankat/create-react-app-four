@@ -11,10 +11,14 @@ class Song extends Component {
       currentArtistName : props.artist
     }
 
+    //when you use arrow syntax for functions, es7 will autobind those functions to the component
+      //so you don't need these lines here
+    //--
     this._handleEdit = this._handleEdit.bind(this);
+    //--
   }
 
-  _handleEdit(evt){
+  _handleEdit = (evt) => {
     evt.preventDefault();
     this.setState({edit : !this.state.edit});
   }
