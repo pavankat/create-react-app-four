@@ -44,18 +44,18 @@ class Song extends Component {
 
         <span className='delete-item'><a href='#' data-songid={this.props.songId} onClick={this.props.handleRemove}>X</a></span>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        
-        <strong>Votes:</strong> {this.props.votes}&nbsp;&nbsp;&nbsp;&nbsp;
-        
+              
         <strong>Artist:</strong> {this.props.artist} {/* better to use artist from props because state in this component doesn't reflect the artist from the database in mongo */}
         &nbsp;&nbsp;
         <strong>Song:</strong> {this.props.songName} {/* better to use songName from props because state in this component doesn't reflect the songName from the database in mongo */}
         &nbsp;&nbsp;&nbsp;&nbsp;
         <span className='edit-item'><a href='#' data-songid={this.props.songId} onClick={this._handleEdit}>{this.state.edit ? "Cancel" : "Edit"}</a></span>
         &nbsp;&nbsp;&nbsp;&nbsp;
-        <span className='vote-item'><a href='#' data-songid={this.props.songId} data-direction="up" onClick={this.props.handleVote}>VOTE UP</a></span>
+        <span className='vote-item'><a href='#' data-songid={this.props.songId} data-direction="up" onClick={this.props.handleVote}>/\</a></span>
         &nbsp;&nbsp;
-        <span className='vote-item'><a href='#' data-songid={this.props.songId} data-direction="down" onClick={this.props.handleVote}>VOTE DOWN</a></span>
+        {this.props.votes}
+        &nbsp;&nbsp;
+        <span className='vote-item'><a href='#' data-songid={this.props.songId} data-direction="down" onClick={this.props.handleVote}>\/</a></span>
       </li>
     );
   }
