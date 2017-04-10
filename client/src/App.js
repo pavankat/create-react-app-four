@@ -18,7 +18,7 @@ class App extends Component {
     this._handleSubmit = this._handleSubmit.bind(this);
     this._handleRemove = this._handleRemove.bind(this);
     this._handleUpdate = this._handleUpdate.bind(this);
-    this._handleVote = this._handleUpdate.bind(this);
+    this._handleVote = this._handleVote.bind(this);
     //--
   }
 
@@ -36,7 +36,7 @@ class App extends Component {
   _handleSubmit = (evt) => {
     evt.preventDefault();
 
-    let newSong = {artist: evt.target.children[0].value, songName: evt.target.children[1].value};
+    let newSong = {artist: evt.target.children[0].value, songName: evt.target.children[1].value, votes: 0};
 
     __createSong(newSong)
       .then((savedSong) => { //we do this because the savedSong will have an _id while newSong won't 
@@ -85,6 +85,7 @@ class App extends Component {
 
   _handleVote = (evt) => {
     evt.preventDefault();
+
     let songId = evt.target.getAttribute("data-songid");
     let direction = evt.target.getAttribute("data-direction");
 
@@ -125,9 +126,11 @@ class App extends Component {
             songId={song._id} 
             artist={song.artist} 
             songName={song.songName} 
+            votes={song.votes}
             handleRemove={this._handleRemove} 
             handleUpdate={this._handleUpdate}
-            handleVote={this._handleVote} />)}
+            handleVote={this._handleVote} 
+            />)}
         </ul>
         <br /><br />
       </div>
