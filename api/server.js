@@ -127,6 +127,27 @@ db.on("error", function(error) {
       });
   });
 
+  app.put("/songs/votes/:id/:direction", function(req, res){
+
+    var voteChange = 0;
+
+    if (req.params.direction == 'up') voteChange++;
+    else voteChange--; 
+
+    //this is wrong I want to grab the current votes and increment by 1
+    db.songs.findAndModify({
+      query: { 
+        "_id": mongojs.ObjectId(req.params.id) 
+      },
+      update: { $set: {
+        { $inc: { votes: voteChange} }
+      },
+      new: true
+      }, function (err, editedSong) {
+          res.json(editedSong);
+      });
+  });
+
   app.delete("/songs/:id", function(req, res) {
     var id = req.params.id;
 
