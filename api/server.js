@@ -139,9 +139,7 @@ db.on("error", function(error) {
       query: { 
         "_id": mongojs.ObjectId(req.params.id) 
       },
-      update: { $set: {
-        { $inc: { votes: voteChange} }
-      },
+      update: { $inc: { votes: voteChange} },  
       new: true
       }, function (err, editedSong) {
           res.json(editedSong);
