@@ -40,7 +40,12 @@ class App extends Component {
 
     __createSong(newSong)
       .then((savedSong) => { //we do this because the savedSong will have an _id while newSong won't 
-        let songs = [...this.state.songs, savedSong];
+        let songsUpdated = [...this.state.songs, savedSong];
+
+        const songs = songsUpdated.sort(function(a, b) {
+          return b.votes - a.votes;
+        });
+
         this.setState({
           songs
         });
@@ -94,8 +99,12 @@ class App extends Component {
     __voteOnSong(songId, direction).then((song) => {
       //this will return a new array of : [1, 2, 99, 4, 5]
         //[1,2,3,4,5].map((a) => (a == 3) ? 99 : a);
-      let songs = songsInState.map((sng) => {
+      let songsUpdated = songsInState.map((sng) => {
         return (sng._id == song._id) ? song : sng
+      });
+
+      const songs = songsUpdated.sort(function(a, b) {
+        return b.votes - a.votes;
       });
 
       this.setState({
