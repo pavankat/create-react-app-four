@@ -49,7 +49,8 @@ class Song extends Component {
         <strong>Song:</strong> {this.props.songName} {/* better to use songName from props because state in this component doesn't reflect the songName from the database in mongo */}
         &nbsp;&nbsp;&nbsp;&nbsp;
         <span className='edit-item'><a href='#' data-songId={this.props.songId} onClick={this._handleEdit}>{this.state.edit ? "Cancel" : "Edit"}</a></span>
-          
+        <span className='vote-item'><a href='#' data-songId={this.props.songId} data-direction="up" onClick={this.props.handleVote}>VOTE UP</a></span>
+        <span className='vote-item'><a href='#' data-songId={this.props.songId} data-direction="down" onClick={this.props.handleVote}>VOTE DOWN</a></span>
       </li>
     );
   }

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import SongForm from './components/SongForm';
 import Song from './components/Song';
-import {__loadSongs, __createSong, __destroySong, __updateSong} from './lib/songService';
+import {__loadSongs, __createSong, __destroySong, __updateSong, __voteOnSong} from './lib/songService';
 
 class App extends Component {
   constructor() {
@@ -18,6 +18,7 @@ class App extends Component {
     this._handleSubmit = this._handleSubmit.bind(this);
     this._handleRemove = this._handleRemove.bind(this);
     this._handleUpdate = this._handleUpdate.bind(this);
+    this._handleVote = this._handleUpdate.bind(this);
     //--
   }
 
@@ -82,6 +83,26 @@ class App extends Component {
     });
   }
 
+  _handleVote = (evt) => {
+    evt.preventDefault();
+    let songId = evt.target.getAttribute("data-songid");
+    let direction = evt.target.getAttribute("data-direction");
+
+    let songsInState = this.state.songs;
+
+    __voteOnSong(songId, direction).then((song) => {
+      //this will return a new array of : [1, 2, 99, 4, 5]
+        //[1,2,3,4,5].map((a) => (a == 3) ? 99 : a);
+      let songs = songsInState.map((sng) => {
+        return (sng._id == song._id) ? song : sng
+      });
+
+      this.setState({
+        songs
+      })
+    });
+  }
+
   render() {    
     return (
       <div className="App">
@@ -105,7 +126,8 @@ class App extends Component {
             artist={song.artist} 
             songName={song.songName} 
             handleRemove={this._handleRemove} 
-            handleUpdate={this._handleUpdate} />)}
+            handleUpdate={this._handleUpdate}
+            handleVote={this._handleVote} />)}
         </ul>
         <br /><br />
       </div>
