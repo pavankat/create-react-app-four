@@ -47,28 +47,36 @@ db.on("error", function(error) {
     //https://github.com/mafintosh/mongojs
 
   app.get("/songs", function(req, res) {
-    // Find all songs in the songs collection
-    db.songs.find({}, function(error, songs) {
-      // Log any errors
-      if (error) {
-        console.log(error);
-      }
-      // Otherwise, send json of the songs back to user
-      // This will fire off the success function of the ajax request
-      else {
-        //pretend that it takes 5 seconds to get the songs back
-        //setTimeout(function(){
-          res.json(songs);
-        //}, 5000)
-      }
+
+    //sort songs
+    db.songs.aggregate(
+       [
+         { $sort : { votes : -1 } }
+       ], function(error, songs){
+
+        res.json(songs);
     });
+
+    // Find all songs in the songs collection
+      // db.songs.find({}, function(error, songs) {
+      //   // Log any errors
+      //   if (error) {
+      //     console.log(error);
+      //   }
+      //   // Otherwise, send json of the songs back to user
+      //   // This will fire off the success function of the ajax request
+      //   else {
+      //     //pretend that it takes 5 seconds to get the songs back
+      //     //setTimeout(function(){
+      //       res.json(songs);
+      //     //}, 5000)
+      //   }
+      // });
   });
 
   // Handle form submission, save submission to mongo
   app.post("/songs", function(req, res) {
     
-    console.log(req.body);
-
     // Insert the song into the songs collection
     db.songs.insert(req.body, function(error, savedSong) {
       // Log any errors
