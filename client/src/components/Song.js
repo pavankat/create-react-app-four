@@ -7,8 +7,8 @@ class Song extends Component {
 
     this.state = {
       edit : false,
-      currentSongName : props.songName,
-      currentArtistName : props.artist
+      currentSongName : "",
+      currentArtistName : ""
     }
 
     //when you use arrow syntax for functions, es7 will autobind those functions to the component
