@@ -21,6 +21,16 @@ votes: 9
 }
 ```
 
+We're using react-router-dom for client side routing.
+
+you can check this out here as a guide on react-router-dom:
+https://reacttraining.com/react-router/web/example/basic
+
+Why Uncontrolled? Because you don't need your inputs to be tied to state if you're just using them to submit data. 
+
+you can check out this reference here:
+https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/
+
 ## to install the app
 
 #### make sure mongo is running on your computer
