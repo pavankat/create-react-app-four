@@ -1,4 +1,25 @@
+# MERN Stack app with Uncontrolled Components (no refs)
+
 deployed url: https://morning-mesa-23625.herokuapp.com/
+
+The inputs in this app aren't tied to state so it's an uncontrolled app.
+
+server.js contains an api of a songs_db with one collection called songs.
+
+The routes in the server.js file are prepended with /songs and are on port 3001
+
+checkout localhost:3001/songs in your browser to see all the songs in your database (you'll have none by default)
+
+each document in the songs collection looks like this: 
+
+```
+{
+_id: "58ec00e7dbd3e4a48360a65b",
+artist: "Celine Dion",
+songName: "My Heart Will Go On",
+votes: 9
+}
+```
 
 ## to install the app
 
@@ -67,6 +88,10 @@ or
 ```
 yarn start
 ```
+
+## How to deploy this app to Heroku
+
+To Be Continued... 
 
 ## Explanations 
 
