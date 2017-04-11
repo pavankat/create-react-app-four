@@ -13,11 +13,11 @@ app.use(logger("dev"));
 app.use(bodyParser());
 
 // Database configuration
-var databaseUrl = "songs_db";
+var databaseUrl = process.env.MONGODB_URI || "songs_db";
 var collections = ["songs"];
 
 // Hook mongojs config to db variable
-var db = mongojs(databaseUrl, collections);
+var db = mongojs(databaseUrl , collections);
 
 // Log any mongojs errors to console
 db.on("error", function(error) {
