@@ -27,8 +27,8 @@ class Song extends Component {
     let displayEditForm = null;
     if (this.state.edit) {
       displayEditForm = <SongForm 
-          songName={this.state.currentSongName}
-          artist={this.state.currentArtistName}
+          songName={this.state.currentSongName || this.props.songName}
+          artist={this.state.currentArtistName || this.props.artist}
           handleSubmit={this.props.handleUpdate}
           edit={true}
           songId={this.props.songId}
