@@ -26,6 +26,9 @@ We're using react-router-dom for client side routing.
 you can check this out here as a guide on react-router-dom:
 https://reacttraining.com/react-router/web/example/basic
 
+There's some great training here on the old react-router (2.8):
+https://github.com/ReactTraining/react-router
+
 Why Uncontrolled? Because you don't need your inputs to be tied to state if you're just using them to submit data. 
 
 you can check out this reference here:
