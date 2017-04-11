@@ -4,10 +4,10 @@
   "description": "",
   "main": "server.js",
   "dependencies": {
-    "body-parser": "^1.17.1",
-    "express": "^4.13.4",
-    "mongojs": "^2.3.0",
-    "morgan": "^1.7.0"
+    "body-parser": "1.17.1",
+    "express": "4.13.4",
+    "mongojs": "2.3.0",
+    "morgan": "1.7.0"
   },
   "devDependencies": {},
   "scripts": {
