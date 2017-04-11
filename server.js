@@ -139,12 +139,13 @@ if (process.env.NODE_ENV === 'production') {
       });
   });
 
+//up to 8:59 explain with your partners
   app.put("/songs/votes/:id/:direction", function(req, res){
 
     var voteChange = 0;
 
-    if (req.params.direction == 'up') voteChange++;
-    else voteChange--; 
+    if (req.params.direction == 'up') voteChange = 1;
+    else voteChange = -1; 
 
     //this is wrong I want to grab the current votes and increment by 1
     db.songs.findAndModify({
@@ -157,6 +158,18 @@ if (process.env.NODE_ENV === 'production') {
           res.json(editedSong);
       });
   });
+
+
+
+
+
+
+
+
+
+
+
+
 
   app.delete("/songs/:id", function(req, res) {
     var id = req.params.id;
