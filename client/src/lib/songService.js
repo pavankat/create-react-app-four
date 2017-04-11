@@ -1,4 +1,4 @@
-const baseUrl = process.env.REACT_APP_API + '/songs';
+const baseUrl = '/songs'; //because of the proxy in package.json of the client/package.json it'll know to use localhost:3001 before /songs on your dev environment - THIS IS NOT A NPM THING - this is a create-react-app thing
 
 export const __loadSongs = () => {
   return fetch(baseUrl)
