@@ -1,14 +1,13 @@
+import './Nav.css';
 import React, { Component } from 'react';
 import {
-  BrowserRouter as Router,
-  Route,
   NavLink
 } from 'react-router-dom'
 
 class Nav extends Component {
   render() {
     return (
-      <div className="App">
+      <div className="navBar">
         <nav>
           <NavLink exact to="/">Home</NavLink>
         </nav> 
