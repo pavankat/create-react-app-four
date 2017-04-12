@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import SongForm from './SongForm';
+import {
+  Link
+} from 'react-router-dom'
 
 class Song extends Component {
   constructor(props) {
@@ -24,6 +27,7 @@ class Song extends Component {
   }
  
   render() {
+    let urlToSongView = `/songs/${this.props.songId}`;
     let displayEditForm = null;
     if (this.state.edit) {
       displayEditForm = <SongForm 
@@ -42,6 +46,9 @@ class Song extends Component {
         
         {displayEditForm}
 
+        <Link exact to={urlToSongView}>SPOTIFY ME</Link>
+
+        &nbsp;&nbsp;&nbsp;&nbsp;
         <span className='delete-item'><a href='#' data-songid={this.props.songId} onClick={this.props.handleRemove}>X</a></span>
         &nbsp;&nbsp;&nbsp;&nbsp;
               

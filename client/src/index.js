@@ -1,14 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Home from './components/Home'
 import './index.css';
-import {
-  BrowserRouter as Router,
-  Route,
-  Link
-} from 'react-router-dom'
 
 ReactDOM.render(
-  <App />,
+  <Home />,
   document.getElementById('root')
 );
+

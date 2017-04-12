@@ -1,15 +1,21 @@
-import React, { Component } from 'react';
-import Nav from './Nav';
+import React, { Component } from 'react'
+import {
+  BrowserRouter as Router,
+  Route,
+  Link
+} from 'react-router-dom'
+import SongView from './SongView'
+import Nav from './Nav'
+import App from '../App'
 
-class Home extends Component {
-  render() {
-    return (
-      <div className="App">
-        Home bro
-        <Nav />
-      </div>
-    );
-  }
-}
+const Home = (props) => (
+<Router>
+	<div>
+		<Nav />
+		<Route exact path="/" component={App} />
+		<Route path="/songs/:id" component={SongView} />
+	</div>
+</Router>
+)
 
 export default Home;
