@@ -1,0 +1,9 @@
+nav {
+	float : left;
+}
+
+.navBar{
+	overflow: auto;
+	margin: 20px 20px 0 20px;
+	font-size: 20px;
+}
