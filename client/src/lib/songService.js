@@ -10,8 +10,8 @@ export const __loadSongs = () => {
     .then(res => res.json())
 }
 
-export const __loadSong = (song) => {
-  return fetch(`${baseUrl}/${song._id}`)
+export const __loadSong = (_id) => {
+  return fetch(`${baseUrl}/${_id}`)
     .then(res => res.json())
 }
 
