@@ -111,10 +111,10 @@ if (process.env.NODE_ENV === 'production') {
 
       for (var i = 0; i < songs.length; i++) {
         data.push({
-          "artist(s)": songs[i].artists.map(getArtistNames),
-          "song name: ": songs[i].name,
-          "preview song: ": songs[i].preview_url,
-          "album: ": songs[i].album.name
+          "artist": songs[i].artists.map(getArtistNames),
+          "songName": songs[i].name,
+          "previewSong": songs[i].preview_url,
+          "album": songs[i].album.name
         });
       }
 
