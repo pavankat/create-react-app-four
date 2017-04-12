@@ -7,7 +7,8 @@
     "body-parser": "1.17.1",
     "express": "4.13.4",
     "mongojs": "2.4.0",
-    "morgan": "1.7.0"
+    "morgan": "1.7.0",
+    "spotify": "0.3.0"
   },
   "devDependencies": {},
   "scripts": {

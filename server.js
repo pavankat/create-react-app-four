@@ -3,12 +3,13 @@ var express = require("express");
 var mongojs = require("mongojs");
 var logger = require("morgan");
 var bodyParser = require('body-parser');
+var spotify = require("spotify");
+
 var PORT = process.env.PORT || 3001;
 var app = express();
 
 // Set the app up with morgan
 app.use(logger("dev"));
-
 
 app.use(bodyParser());
 
@@ -93,6 +94,34 @@ if (process.env.NODE_ENV === 'production') {
     });
   });
 
+  app.get("/songs/:artist/:songname", function(req, res) {
+
+    var query = req.params.songname;
+
+    spotify.search({ type: "track", query:  query}, function(err, data) {
+      if (err) res.json(err);
+
+      var songs = data.tracks.items;
+      var data = [];
+
+      // Helper function that gets the artist name
+      var getArtistNames = function(artist) {
+        return artist.name;
+      };
+
+      for (var i = 0; i < songs.length; i++) {
+        data.push({
+          "artist(s)": songs[i].artists.map(getArtistNames),
+          "song name: ": songs[i].name,
+          "preview song: ": songs[i].preview_url,
+          "album: ": songs[i].album.name
+        });
+      }
+
+      res.json(data);
+    });
+  })
+
   //one song
   app.get("/songs/:id", function(req, res) {
     db.songs.findOne({
@@ -159,18 +188,6 @@ if (process.env.NODE_ENV === 'production') {
       });
   });
 
-
-
-
-
-
-
-
-
-
-
-
-
   app.delete("/songs/:id", function(req, res) {
     var id = req.params.id;
 
@@ -188,8 +205,6 @@ if (process.env.NODE_ENV === 'production') {
   app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, './client/public/index.html'));
   });
-
-
 
 // Listen on port 3001
   app.listen(PORT, function() {
