@@ -20,7 +20,8 @@ class SongView extends Component {
 	componentDidMount() {
 		__loadSong(this.props.match.params.id)
 			.then(song => {
-				__loadSpotifyInformation(song.artist, song.songName).then(spotifyData => this.setState({spotifyData}))
+				__loadSpotifyInformation(song.artist, song.songName)
+					.then(spotifyData => this.setState({spotifyData}))
 			})
 	}
 
