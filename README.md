@@ -21,10 +21,16 @@ votes: 9
 }
 ```
 
-We're using react-router-dom for client side routing.
+We're using react-router-dom for client side routing (we're leveraging react router 4)
 
-you can check this out here as a guide on react-router-dom:
+you can check this out here as a guide on react-router-dom (react router 4):
 https://reacttraining.com/react-router/web/example/basic
+
+Here's some great training on the new version of react router (4):
+https://github.com/joemaddalone/egghead-react-router-v4 
+
+There's some great training here on the old react-router (2.8):
+https://github.com/ReactTraining/react-router
 
 Why Uncontrolled? Because you don't need your inputs to be tied to state if you're just using them to submit data. 
 
@@ -101,7 +107,53 @@ yarn start
 
 ## How to deploy this app to Heroku
 
-To Be Continued... 
+push up the repo to github
+
+```
+heroku create
+```
+
+go to heroku and add mlab to your heroku app
+
+if you don't know what the name of your app is, you can go to your app in the terminal and do 
+
+```
+git remote -v 
+```
+
+and it'll tell you what your heroku app is
+
+in your server.js file of the main app you make sure you're doing the following things: 
+
+```
+//use the server port if it's available (meaning we're on production) otherwise use 3001
+var PORT = process.env.PORT || 3001;
+
+//use the mongo database on production - but if it doesn't exist use "songs_db" for development purposes
+var databaseUrl = process.env.MONGODB_URI || "songs_db";
+
+// if we're on production then be sure to use the client/build folder as the public folder for assets
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'));
+}
+
+//the index.html file will load from here when the heroku url is reached on the root (/)
+app.get('*', function(req, res) {
+  res.sendFile(path.join(__dirname, './client/public/index.html'));
+});
+```
+
+before you deploy to heroku you need to 
+
+go into your client folder
+
+and do 
+
+```
+yarn build
+```
+
+to get your react code ready for production
 
 ## Explanations 
 

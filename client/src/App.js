@@ -79,7 +79,7 @@ class App extends Component {
       //this will return a new array of : [1, 2, 99, 4, 5]
         //[1,2,3,4,5].map((a) => (a == 3) ? 99 : a);
       let songs = songsInState.map((sng) => {
-        return (sng._id == song._id) ? song : sng
+        return (sng._id === song._id) ? song : sng
       });
 
       this.setState({
@@ -100,7 +100,7 @@ class App extends Component {
       //this will return a new array of : [1, 2, 99, 4, 5]
         //[1,2,3,4,5].map((a) => (a == 3) ? 99 : a);
       let songsUpdated = songsInState.map((sng) => {
-        return (sng._id == song._id) ? song : sng
+        return (sng._id === song._id) ? song : sng
       });
 
       const songs = songsUpdated.sort(function(a, b) {
@@ -141,6 +141,7 @@ class App extends Component {
             handleVote={this._handleVote} 
             />)}
         </ul>
+
         <br /><br />
       </div>
     );
