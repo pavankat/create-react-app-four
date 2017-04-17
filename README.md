@@ -23,6 +23,10 @@ votes: 9
 
 We're using react-router-dom for client side routing (we're leveraging react router 4)
 
+routing in react is weird. It's not great for SEO and doesn't work for all circumstances. We're using it here as a test case. In reality, you should do server side routing and rendering for important SEO pages, and use react in portions of your website that need the interactivity. 
+
+You can read more about the weirdness here: http://stackoverflow.com/questions/27928372/react-router-urls-dont-work-when-refreshing-or-writting-manually
+
 you can check this out here as a guide on react-router-dom (react router 4):
 https://reacttraining.com/react-router/web/example/basic
 
