@@ -31,7 +31,10 @@ class Name extends Component {
 
 		this.setState({name : evt.target.children[0].value.toLowerCase()}, () => {
 			__loadSpotifyInformation(this.state.name, this.state.name)
-				.then(spotifyData => this.setState({spotifyData}))
+				.then(spotifyData => {
+					this.setState({spotifyData : []}); //if I don't empty it, the songs cosmetically change but the old songs are still used
+					this.setState({spotifyData});
+				})
 		})
 	}
 
