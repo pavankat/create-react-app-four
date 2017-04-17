@@ -6,6 +6,8 @@ import {
 import SongView from './SongView'
 import Nav from './Nav'
 import App from '../App'
+import Name from './Name'
+import Movie from './Movie'
 
 const Home = (props) => (
 <Router>
@@ -13,6 +15,8 @@ const Home = (props) => (
 		<Nav />
 		<Route exact path="/" component={App} />
 		<Route path="/songs/:id" component={SongView} />
+		<Route path="/:name" component={Name} />
+		<Route path="/movies/:movie" component={Movie} />
 	</div>
 </Router>
 )
