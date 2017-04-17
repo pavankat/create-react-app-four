@@ -4,6 +4,7 @@ var mongojs = require("mongojs");
 var logger = require("morgan");
 var bodyParser = require('body-parser');
 var spotify = require("spotify");
+var request = require('request');
 
 var PORT = process.env.PORT || 3001;
 var app = express();
@@ -45,6 +46,16 @@ if (process.env.NODE_ENV === 'production') {
     next();
   });
 
+// movie Routes
+  app.get("/movies/:movie", function(req, res) {
+    var url = "http://www.omdbapi.com/?t=" + req.params.movie;
+
+    request(url, function (error, response, body) {
+      res.json(JSON.parse(response.body));
+    });
+  });
+
+  //3 minutes explain to your partner
 
 // songs Routes
 // ======
