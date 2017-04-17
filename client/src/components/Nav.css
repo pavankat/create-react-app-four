@@ -2,6 +2,16 @@ nav {
 	float : left;
 }
 
+nav a {
+	margin-right: 10px;
+}
+
+/* all except the last one */
+nav a:nth-last-child(n+2) {
+	border-right: 2px solid black;
+	padding-right: 10px;
+}
+
 .navBar{
 	overflow: auto;
 	margin: 20px 20px 0 20px;

@@ -10,6 +10,7 @@ class Nav extends Component {
       <div className="navBar">
         <nav>
           <NavLink exact to="/">Home</NavLink>
+          <NavLink to="/pavan">Made By Pavan</NavLink>
         </nav> 
       </div>
     );
