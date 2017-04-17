@@ -5,6 +5,7 @@ var logger = require("morgan");
 var bodyParser = require('body-parser');
 var spotify = require("spotify");
 var request = require('request');
+var path = require('path');
 
 var PORT = process.env.PORT || 3001;
 var app = express();
