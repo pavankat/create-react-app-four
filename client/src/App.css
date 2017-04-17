@@ -4,6 +4,10 @@
   padding: 5px;
 }
 
+.song a {
+  margin-left: 20px;
+}
+
 .App {
   text-align: center;
 }

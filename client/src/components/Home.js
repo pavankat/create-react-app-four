@@ -14,8 +14,8 @@ const Home = (props) => (
 	<div>
 		<Nav />
 		<Route exact path="/" component={App} />
+		<Route path="/names/:name" component={Name} />
 		<Route path="/songs/:id" component={SongView} />
-		<Route path="/:name" component={Name} />
 		<Route path="/movies/:movie" component={Movie} />
 	</div>
 </Router>

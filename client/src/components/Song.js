@@ -27,7 +27,6 @@ class Song extends Component {
   }
  
   render() {
-    let urlToSongView = `/songs/${this.props.songId}`;
     let displayEditForm = null;
     if (this.state.edit) {
       displayEditForm = <SongForm 
@@ -40,6 +39,9 @@ class Song extends Component {
            />
     }
 
+    let urlToSongView = `/songs/${this.props.songId}`;
+    let urlToMovieView = `/movies/${this.props.songName}`;
+
     return (
       <li className="song">
         { /* this.props.key */ } {/* Warning: Cat: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. */}
@@ -47,6 +49,8 @@ class Song extends Component {
         {displayEditForm}
 
         <Link exact to={urlToSongView}>SPOTIFY ME</Link>
+
+        <Link exact to={urlToMovieView}>MOVIE ME</Link>
 
         &nbsp;&nbsp;&nbsp;&nbsp;
         <span className='delete-item'><a href='#' data-songid={this.props.songId} onClick={this.props.handleRemove}>X</a></span>
