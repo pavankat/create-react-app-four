@@ -181,6 +181,13 @@ if (process.env.NODE_ENV === 'production') {
   });
 
 //up to 8:59 explain with your partners
+  /songs/votes/j483u843384/up 
+
+  /songs/votes/j483u843384/down
+
+  /songs/votes/j483u843384/alabama
+
+
   app.put("/songs/votes/:id/:direction", function(req, res){
 
     var voteChange = 0;
