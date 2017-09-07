@@ -68,7 +68,7 @@ https://github.com/joemaddalone/egghead-react-router-v4
 There's some great training here on the old react-router (2.8):
 https://github.com/ReactTraining/react-router
 
-## Why Uncontrolled? '
+## Why Uncontrolled?
 
 Because you don't need your inputs to be tied to state if you're just using them to submit data. 
 
