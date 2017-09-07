@@ -42,7 +42,7 @@ class Name extends Component {
 	render() {
 		let header = "loading...";
 
-		if (this.state.name != ""){
+		if (this.state.name !== ""){
 			header = <h2>Songs with {this.state.name} in it</h2>
 		}
 

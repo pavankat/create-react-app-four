@@ -25,11 +25,11 @@ class Song extends Component {
     evt.preventDefault();
     this.setState({edit : !this.state.edit});
   }
- 
+
   render() {
     let displayEditForm = null;
     if (this.state.edit) {
-      displayEditForm = <SongForm 
+      displayEditForm = <SongForm
           songName={this.state.currentSongName || this.props.songName}
           artist={this.state.currentArtistName || this.props.artist}
           handleSubmit={this.props.handleUpdate}
@@ -45,17 +45,17 @@ class Song extends Component {
     return (
       <li className="song">
         { /* this.props.key */ } {/* Warning: Cat: `key` is not a prop. Trying to access it will result in `undefined` being returned. If you need to access the same value within the child component, you should pass it as a different prop. */}
-        
+
         {displayEditForm}
 
-        <Link exact to={urlToSongView}>SPOTIFY ME</Link>
+        <Link to={urlToSongView}>SPOTIFY ME</Link>
 
-        <Link exact to={urlToMovieView}>MOVIE ME</Link>
+        <Link to={urlToMovieView}>MOVIE ME</Link>
 
         &nbsp;&nbsp;&nbsp;&nbsp;
         <span className='delete-item'><a href='#' data-songid={this.props.songId} onClick={this.props.handleRemove}>X</a></span>
         &nbsp;&nbsp;&nbsp;&nbsp;
-              
+
         <strong>Artist:</strong> {this.props.artist} {/* better to use artist from props because state in this component doesn't reflect the artist from the database in mongo */}
         &nbsp;&nbsp;
         <strong>Song:</strong> {this.props.songName} {/* better to use songName from props because state in this component doesn't reflect the songName from the database in mongo */}
