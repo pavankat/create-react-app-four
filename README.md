@@ -37,6 +37,7 @@ for mac:
 open this file in sublime ~/.bash_profile
 
 export SPOTIFY_ID=the id you got from spotify goes here
+
 export SPOTIFY_SECRET=the secret you got from spotify goes here
 
 for windows:
