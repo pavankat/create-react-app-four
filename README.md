@@ -159,7 +159,24 @@ git remote -v
 
 and it'll tell you what your heroku app is
 
-in your server.js file of the main app you make sure you're doing the following things: 
+#### getting a spotify api key
+
+You'll also have to go to https://developer.spotify.com/my-applications/
+and make an application. Spotify asks for information, you can put down that you're making an app to learn how to use the spotify api
+
+#### setting up your environment variables on heroku for spotify
+
+go login to spotify and find the app you made then go to settings and then add the following environment variables:
+
+SPOTIFY_ID
+
+and 
+
+SPOTIFY_SECRET
+
+then set the values to what spotify gave you.
+
+#### in your server.js file of the main app you make sure you're doing the following things: 
 
 ```
 //use the server port if it's available (meaning we're on production) otherwise use 3001
