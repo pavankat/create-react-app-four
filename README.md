@@ -68,10 +68,16 @@ https://github.com/joemaddalone/egghead-react-router-v4
 There's some great training here on the old react-router (2.8):
 https://github.com/ReactTraining/react-router
 
-Why Uncontrolled? Because you don't need your inputs to be tied to state if you're just using them to submit data. 
+## Why Uncontrolled? '
+
+Because you don't need your inputs to be tied to state if you're just using them to submit data. 
 
 you can check out this reference here:
 https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/
+
+I disagree with facebook that this is an anti pattern. 
+
+I believe it is the pattern for the above circumstance.
 
 ## to install the app
 
