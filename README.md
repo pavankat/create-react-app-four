@@ -23,63 +23,25 @@ votes: 9
 
 We're using react-router-dom for client side routing (we're leveraging react router 4)
 
-### a good explanation of client side vs server side routing:
-
-taken from here: http://stackoverflow.com/questions/23975199/when-to-use-client-side-routing-or-server-side-routing
-
-```
-with server-side routing you download an entire new webpage whenever you click on a link,
-with client-side routing the webapp downloads, processes and displays new data for you.
-Imagine the user clicking on a simple link:  <a href="/hello">Hello!</a>
-
-On a webapp that uses server side routing:
-
-The browser detects that the user has clicked on an anchor element.
-It makes an HTTP GET request to the URL found in the href tag
-The server processes the request, and sends a new document (usually HTML) as a response.
-
-The browser discards the old webpage altogether, and displays the newly downloaded one.
-
-If the webapp uses client side routing:
-
-The browser detects that the user has clicked on an anchor element, just like before.
-
-A client side code (usually the routing library) catches this event, detects that the URL is not an external link, and then prevents the browser from making the HTTP GET request.
-The routing library then manually changes the URL displayed in the browser (using the HTML5 history API, or maybe URL hashbangs on older browsers)
-
-The routing library then changes the state of the client app. For example, it can change the root React/Angular/etc component according to the route rules.
-
-The app (particularly the MVC library, like React) then processes state changes. It renders the new components, and if necessary, it requests new data from the server. But this time the response isn't necessarily an entire webpage, it may also be "raw" data, in which case the client-side code turns it into HTML elements.
-Client-side routing sound more complicated, because it is. But some libraries really make it easy these days.
-
-There are several upsides of client-side routing: you download less data to display new content, you can reuse DOM elements, display loading notifications to user etc. However, webapps that generate the DOM on server side are much easier to crawl (by search engines), thereby making SEO optimization easier. Combining these two approaches is also possible, the excellent Flow Router SSR is a good example for that.
-```
-
-routing in react is weird. It's not great for SEO and doesn't work for all circumstances. We're using it here as a test case. In reality, you should do server side routing and rendering for important SEO pages, and use react in portions of your website that need the interactivity. 
-
-You can read more about the weirdness here: http://stackoverflow.com/questions/27928372/react-router-urls-dont-work-when-refreshing-or-writting-manually
-
-you can check this out here as a guide on react-router-dom (react router 4):
-https://reacttraining.com/react-router/web/example/basic
-
-Here's some great training on the new version of react router (4):
-https://github.com/joemaddalone/egghead-react-router-v4 
-
-There's some great training here on the old react-router (2.8):
-https://github.com/ReactTraining/react-router
-
-## Why Uncontrolled?
-
-Because you don't need your inputs to be tied to state if you're just using them to submit data. 
-
-you can check out this reference here:
-https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/
-
-I disagree with facebook that this is an anti pattern. 
-
-I believe it is the pattern for the above circumstance.
-
 ## to install the app
+
+#### getting a spotify api key
+
+You'll also have to go to https://developer.spotify.com/my-applications/
+and make an application. Spotify asks for information, you can put down that you're making an app to learn how to use the spotify api
+
+#### set up spotify environment variables
+
+for mac:
+
+open this file in sublime ~/.bash_profile
+
+export SPOTIFY_ID=the id you got from spotify goes here
+export SPOTIFY_SECRET=the secret you got from spotify goes here
+
+for windows:
+
+http://www.dowdandassociates.com/blog/content/howto-set-an-environment-variable-in-windows-command-line-and-registry/
 
 #### make sure mongo is running on your computer
 
@@ -165,11 +127,6 @@ git remote -v
 
 and it'll tell you what your heroku app is
 
-#### getting a spotify api key
-
-You'll also have to go to https://developer.spotify.com/my-applications/
-and make an application. Spotify asks for information, you can put down that you're making an app to learn how to use the spotify api
-
 #### setting up your environment variables on heroku for spotify
 
 go login to spotify and find the app you made then go to settings and then add the following environment variables:
@@ -225,3 +182,59 @@ https://engineering.musefind.com/react-lifecycle-methods-how-and-when-to-use-the
 #### In SongForm.js
 
 used an uncontrolled form structure because we don't need to tie the inputs to state
+
+### a good explanation of client side vs server side routing:
+
+taken from here: http://stackoverflow.com/questions/23975199/when-to-use-client-side-routing-or-server-side-routing
+
+```
+with server-side routing you download an entire new webpage whenever you click on a link,
+with client-side routing the webapp downloads, processes and displays new data for you.
+Imagine the user clicking on a simple link:  <a href="/hello">Hello!</a>
+
+On a webapp that uses server side routing:
+
+The browser detects that the user has clicked on an anchor element.
+It makes an HTTP GET request to the URL found in the href tag
+The server processes the request, and sends a new document (usually HTML) as a response.
+
+The browser discards the old webpage altogether, and displays the newly downloaded one.
+
+If the webapp uses client side routing:
+
+The browser detects that the user has clicked on an anchor element, just like before.
+
+A client side code (usually the routing library) catches this event, detects that the URL is not an external link, and then prevents the browser from making the HTTP GET request.
+The routing library then manually changes the URL displayed in the browser (using the HTML5 history API, or maybe URL hashbangs on older browsers)
+
+The routing library then changes the state of the client app. For example, it can change the root React/Angular/etc component according to the route rules.
+
+The app (particularly the MVC library, like React) then processes state changes. It renders the new components, and if necessary, it requests new data from the server. But this time the response isn't necessarily an entire webpage, it may also be "raw" data, in which case the client-side code turns it into HTML elements.
+Client-side routing sound more complicated, because it is. But some libraries really make it easy these days.
+
+There are several upsides of client-side routing: you download less data to display new content, you can reuse DOM elements, display loading notifications to user etc. However, webapps that generate the DOM on server side are much easier to crawl (by search engines), thereby making SEO optimization easier. Combining these two approaches is also possible, the excellent Flow Router SSR is a good example for that.
+```
+
+routing in react is weird. It's not great for SEO and doesn't work for all circumstances. We're using it here as a test case. In reality, you should do server side routing and rendering for important SEO pages, and use react in portions of your website that need the interactivity. 
+
+You can read more about the weirdness here: http://stackoverflow.com/questions/27928372/react-router-urls-dont-work-when-refreshing-or-writting-manually
+
+you can check this out here as a guide on react-router-dom (react router 4):
+https://reacttraining.com/react-router/web/example/basic
+
+Here's some great training on the new version of react router (4):
+https://github.com/joemaddalone/egghead-react-router-v4 
+
+There's some great training here on the old react-router (2.8):
+https://github.com/ReactTraining/react-router
+
+## Why Uncontrolled?
+
+Because you don't need your inputs to be tied to state if you're just using them to submit data. 
+
+you can check out this reference here:
+https://goshakkk.name/controlled-vs-uncontrolled-inputs-react/
+
+I disagree with facebook that this is an anti pattern. 
+
+I believe it is the pattern for the above circumstance.
