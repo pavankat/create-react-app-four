@@ -22,7 +22,7 @@ class Movie extends Component {
 
   render() {
   	let moviePoster = '';
-  	if (this.state.movie.Poster != 'N/A') moviePoster = <img src={this.state.movie.Poster} />;
+  	if (this.state.movie.Poster !== 'N/A') moviePoster = <img alt="" src={this.state.movie.Poster} />;
 
     return (
       <div className="App">

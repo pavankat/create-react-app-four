@@ -3,9 +3,13 @@ var express = require("express");
 var mongojs = require("mongojs");
 var logger = require("morgan");
 var bodyParser = require('body-parser');
-var spotify = require("spotify");
+var Spotify = require("node-spotify-api");
 var request = require('request');
 var path = require('path');
+var spotify = new Spotify({
+  id: <insert id here>,
+  secret: <insert secret here>
+});
 
 var PORT = process.env.PORT || 3001;
 var app = express();
@@ -93,7 +97,7 @@ if (process.env.NODE_ENV === 'production') {
 
   // Handle form submission, save submission to mongo
   app.post("/songs", function(req, res) {
-    
+
     // Insert the song into the songs collection
     db.songs.insert(req.body, function(error, savedSong) {
       // Log any errors
@@ -112,7 +116,7 @@ if (process.env.NODE_ENV === 'production') {
 
     spotify.search({ type: "track", query:  query}, function(err, data) {
       if (err) res.json(err);
-
+      // console.log(data)
       var songs = data.tracks.items;
       var data = [];
 
@@ -150,7 +154,7 @@ if (process.env.NODE_ENV === 'production') {
   //update a song
   app.put("/songs/:id", function(req, res) {
     //if we use this then we won't get the updated document back
-    /* 
+    /*
       db.songs.update({
         "_id": mongojs.ObjectId(req.params.id)
       }, {
@@ -168,11 +172,11 @@ if (process.env.NODE_ENV === 'production') {
     */
 
     db.songs.findAndModify({
-      query: { 
-        "_id": mongojs.ObjectId(req.params.id) 
+      query: {
+        "_id": mongojs.ObjectId(req.params.id)
       },
       update: { $set: {
-        "artist": req.body.artist, "songName": req.body.songName } 
+        "artist": req.body.artist, "songName": req.body.songName }
       },
       new: true
       }, function (err, editedSong) {
@@ -181,11 +185,11 @@ if (process.env.NODE_ENV === 'production') {
   });
 
 //up to 8:59 explain with your partners
-  /songs/votes/j483u843384/up 
-
-  /songs/votes/j483u843384/down
-
-  /songs/votes/j483u843384/alabama
+  // /songs/votes/j483u843384/up
+  //
+  // /songs/votes/j483u843384/down
+  //
+  // /songs/votes/j483u843384/alabama
 
 
   app.put("/songs/votes/:id/:direction", function(req, res){
@@ -193,14 +197,14 @@ if (process.env.NODE_ENV === 'production') {
     var voteChange = 0;
 
     if (req.params.direction == 'up') voteChange = 1;
-    else voteChange = -1; 
+    else voteChange = -1;
 
     //this is wrong I want to grab the current votes and increment by 1
     db.songs.findAndModify({
-      query: { 
-        "_id": mongojs.ObjectId(req.params.id) 
+      query: {
+        "_id": mongojs.ObjectId(req.params.id)
       },
-      update: { $inc: { votes: voteChange} },  
+      update: { $inc: { votes: voteChange} },
       new: true
       }, function (err, editedSong) {
           res.json(editedSong);
@@ -220,7 +224,7 @@ if (process.env.NODE_ENV === 'production') {
       }
     });
   });
-  
+
   app.get('*', function(req, res) {
     res.sendFile(path.join(__dirname, './client/public/index.html'));
   });

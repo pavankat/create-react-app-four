@@ -8,6 +8,7 @@
     "express": "4.13.4",
     "mongojs": "2.4.0",
     "morgan": "1.7.0",
+    "node-spotify-api": "^1.0.7",
     "request": "2.81.0",
     "spotify": "0.3.0"
   },
