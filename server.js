@@ -7,8 +7,8 @@ var Spotify = require("node-spotify-api");
 var request = require('request');
 var path = require('path');
 var spotify = new Spotify({
-  id: <insert id here>,
-  secret: <insert secret here>
+  id: process.env.SPOTIFY_ID,
+  secret: process.env.SPOTIFY_SECRET
 });
 
 var PORT = process.env.PORT || 3001;
